@@ -1,0 +1,22 @@
+version: '3.1'
+services:
+  redis:
+    restart: always
+    image: redis:latest
+    container_name: docker-redis
+    ports: 
+      - 19000:6379
+    command: redis-server /etc/conf/redis.conf
+    privileged: true
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG= en_US.UTF-8
+  nginx:
+    restart: always
+    image: nginx
+    container_name: docker-nginx
+    ports:
+      - 19080:80
+    command: echo "<h1>Hello</h1>" /usr/share/nginx/html
+
+        
